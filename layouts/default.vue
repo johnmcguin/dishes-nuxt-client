@@ -8,6 +8,7 @@
       app
     >
       <v-list>
+        <!-- TODO: look into using nuxt-link component with these -->
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
@@ -29,7 +30,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-icon>mdi-account-circle-outline</v-icon>
+      <v-icon v-if="isAuthed">mdi-account-circle-outline</v-icon>
     </v-app-bar>
     <!-- Main Content Hook -->
     <v-content>
@@ -37,7 +38,7 @@
         <nuxt />
       </v-container>
     </v-content>
-    <!--  -->
+    <!-- footer -->
     <v-footer :fixed="fixed" app>
       <span>&copy; 2019</span>
     </v-footer>
@@ -51,21 +52,56 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
-      items: [
+      miniVariant: false,
+      title: 'Dishes'
+    }
+  },
+  computed: {
+    isAuthed() {
+      return this.$store.state.authentication.isAuthenticated
+    },
+    items() {
+      return this.navigation(this.isAuthed)
+    }
+  },
+  methods: {
+    navigation(isAuthenticated) {
+      return isAuthenticated ? this.fullNav() : this.guestNav()
+    },
+    fullNav() {
+      return [
+        ...this.guestNav(),
+        {
+          icon: 'mdi-magnify',
+          title: 'Discover',
+          to: '/discover'
+        },
+        {
+          icon: 'mdi-food-apple-outline',
+          title: 'My Dishes',
+          to: '/dishes'
+        }
+      ]
+    },
+    guestNav() {
+      return [
         {
           icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          to: '/',
+          hasPermission: this.isAuthed
         }
-      ],
-      miniVariant: false,
-      title: 'Dishes'
+      ]
     }
   }
 }
 </script>
+
+<style lang="scss">
+.v-application {
+  font-family: 'Open Sans', sans-serif;
+}
+.v-toolbar__title {
+  font-family: 'Pacifico', cursive;
+}
+</style>

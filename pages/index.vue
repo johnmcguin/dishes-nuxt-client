@@ -1,14 +1,15 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>hello {{ msg }}</v-flex>
-  </v-layout>
+  <login></login>
 </template>
-
 <script>
+import Login from '../components/login'
 export default {
+  components: {
+    Login
+  },
   computed: {
     msg() {
-      return this.$store.state.test.message
+      return this.$store.state.authentication.message
     }
   }
 }
