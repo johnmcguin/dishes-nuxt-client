@@ -60,6 +60,9 @@ export default {
     isAuthed() {
       return this.$store.state.authentication.isAuthenticated
     },
+    userId() {
+      return this.$store.state.authentication.user.id
+    },
     items() {
       return this.navigation(this.isAuthed)
     }
@@ -79,7 +82,22 @@ export default {
         {
           icon: 'mdi-food-apple-outline',
           title: 'My Dishes',
-          to: '/dishes'
+          to: `/users/${this.userId}/dishes`
+        },
+        {
+          icon: 'mdi-heart-outline',
+          title: 'My Favorites',
+          to: `/users/${this.userId}/favorites`
+        },
+        {
+          icon: 'mdi-bookmark-outline',
+          title: 'My Bookmarks',
+          to: `/users/${this.userId}/bookmarks`
+        },
+        {
+          icon: 'mdi-account-search-outline',
+          title: 'Community',
+          to: '/community'
         }
       ]
     },

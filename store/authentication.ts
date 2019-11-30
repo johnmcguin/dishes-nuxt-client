@@ -28,7 +28,7 @@ export const actions: ActionTree<RootState, RootState> = {
     this.$axios.setToken(data.accessToken.token, data.accessToken.type)
     commit('setUser', data.user)
     this.$router.push({
-      path: '/dishes'
+      path: `/users/${data.user.id}/dishes`
     })
   },
 

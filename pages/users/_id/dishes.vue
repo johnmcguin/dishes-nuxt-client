@@ -24,11 +24,11 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn icon>
+          <v-btn icon @click="favorite({ userId, dishId: dish.id })">
             <v-icon>mdi-heart-outline</v-icon>
           </v-btn>
 
-          <v-btn icon>
+          <v-btn icon @click="bookmark({ userId, dishId: dish.id })">
             <v-icon>mdi-bookmark-outline</v-icon>
           </v-btn>
         </v-card-actions>
@@ -39,20 +39,29 @@
 
 <script>
 export default {
+  // TODO: user mapState and mapActions in all components
   middleware: 'authenticated',
-
+  computed: {
+    userMadeDishes() {
+      return this.$store.state.dishes.userMadeDishes
+    },
+    userId() {
+      return this.$store.state.authentication.user.id
+    }
+  },
+  methods: {
+    async favorite({ userId, dishId }) {
+      await this.$store.dispatch('dishes/SET_USER_FAVORITE', { userId, dishId })
+    },
+    async bookmark({ userId, dishId }) {
+      await this.$store.dispatch('dishes/SET_USER_BOOKMARK', { userId, dishId })
+    }
+  },
   async fetch({ store }) {
-    console.log(store.state.authentication)
     await store.dispatch(
       'dishes/GET_USER_DISHES',
       store.state.authentication.user.id
     )
-  },
-
-  computed: {
-    userMadeDishes() {
-      return this.$store.state.dishes.userMadeDishes
-    }
   }
 }
 </script>
