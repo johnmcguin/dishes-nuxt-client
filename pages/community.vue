@@ -2,8 +2,10 @@
   <v-row>
     <v-col v-for="user in users" :key="user.id" xs="12" sm="6" md="4" lg="3">
       <v-card>
+        <!-- fallback image / placeholder if no profile image -->
+        <!-- lazy-src="" -->
         <v-img
-          :src="'https://i.pravatar.cc/150?img=' + user.id"
+          :src="user.userProfileImg"
           class="white--text align-end"
           gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.7)"
           height="200px"

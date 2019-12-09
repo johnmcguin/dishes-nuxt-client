@@ -10,7 +10,7 @@
     >
       <v-card>
         <v-img
-          src="https://via.placeholder.com/750"
+          :src="dish.imgUrl"
           class="white--text align-end"
           gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.7)"
           height="200px"
