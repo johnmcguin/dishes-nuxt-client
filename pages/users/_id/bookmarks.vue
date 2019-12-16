@@ -10,7 +10,7 @@
     >
       <v-card>
         <v-img
-          src="https://via.placeholder.com/750"
+          :src="dish.imgUrl"
           class="white--text align-end"
           gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.7)"
           height="200px"
@@ -29,7 +29,7 @@
           </v-btn>
 
           <v-btn icon>
-            <v-icon>mdi-bookmark-outline</v-icon>
+            <v-icon color="yellow darken-2">mdi-bookmark</v-icon>
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -42,12 +42,12 @@ export default {
   middleware: 'authenticated',
   computed: {
     bookmarks() {
-      return this.$store.state.dishes.userFavorites
+      return this.$store.state.dishes.userBookmarks
     }
   },
   async fetch({ store }) {
     await store.dispatch(
-      'dishes/GET_USER_FAVORITES',
+      'dishes/GET_USER_BOOKMARKS',
       store.state.authentication.user.id
     )
   }

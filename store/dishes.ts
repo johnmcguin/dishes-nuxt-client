@@ -2,7 +2,8 @@ import { ActionTree, MutationTree } from 'vuex'
 
 export const state = () => ({
   userMadeDishes: [],
-  userFavorites: []
+  userFavorites: [],
+  userBookmarks: []
 })
 // eslint-disable-next-line no-undef
 export type RootState = ReturnType<typeof state>
@@ -10,11 +11,15 @@ export type RootState = ReturnType<typeof state>
 export const mutations: MutationTree<RootState> = {
   // mutate state
   setUserDishes(state, payload) {
-    state.userMadeDishes = state.userMadeDishes.length ? state.userMadeDishes.concat(payload) : payload
+    state.userMadeDishes = payload
   },
 
   setUserFavorites(state, payload) {
-    state.userFavorites = state.userFavorites.length ? state.userFavorites.concat(payload) : payload
+    state.userFavorites = payload
+  },
+
+  setUserBookmarks(state, payload) {
+    state.userBookmarks = payload
   }
 }
 
@@ -35,8 +40,13 @@ export const actions: ActionTree<RootState, RootState> = {
     commit('setUserFavorites', data)
   },
 
-  async SET_USER_BOOKMARK({ commit }, { userId, dishId }) {
+  async BOOKMARK_DISH({ commit }, { userId, dishId }) {
     const { data } = await this.$axios.$post(`/api/users/${userId}/dishes/${dishId}/bookmarks`)
+    commit('setUserBookmarks', data)
+  },
+
+  async GET_USER_BOOKMARKS({ commit }, payload) {
+    const { data } = await this.$axios.$get(`/api/users/${payload}/bookmarks`)
     commit('setUserBookmarks', data)
   }
 }

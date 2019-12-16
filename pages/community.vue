@@ -1,33 +1,17 @@
 <template>
-  <v-row>
-    <v-col v-for="user in users" :key="user.id" xs="12" sm="6" md="4" lg="3">
-      <v-card>
-        <!-- fallback image / placeholder if no profile image -->
-        <!-- lazy-src="" -->
-        <v-img
-          :src="user.userProfileImg"
-          class="white--text align-end"
-          gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.7)"
-          height="200px"
-        >
-        </v-img>
-        <v-card-text>
-          <p>
-            {{ user.username }} |
-            <span
-              ><small>member since {{ user.createdAt }}</small></span
-            >
-          </p>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <p>display a count of recipes perhaps?</p>
-          <v-btn>follow</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+  <div>
+    <v-row v-for="user in users" :key="user.id">
+      <v-col cols="4" sm="2" md="1">
+        <v-avatar v-if="user.userProfileImg" size="50">
+          <v-img :src="user.userProfileImg"> </v-img>
+        </v-avatar>
+        <v-avatar v-else color="indigo" size="50">
+          <!-- TODO: display the initials and a dynamic, theme based color -->
+          <span class="white--text headline">user.username</span>
+        </v-avatar>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>

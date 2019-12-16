@@ -54,7 +54,7 @@ export default {
       await this.$store.dispatch('dishes/SET_USER_FAVORITE', { userId, dishId })
     },
     async bookmark({ userId, dishId }) {
-      await this.$store.dispatch('dishes/SET_USER_BOOKMARK', { userId, dishId })
+      await this.$store.dispatch('dishes/BOOKMARK_DISH', { userId, dishId })
     }
   },
   async fetch({ store }) {
