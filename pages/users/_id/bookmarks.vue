@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row v-if="bookmarks.length">
     <v-col
       v-for="dish in bookmarks"
       :key="dish.id"
@@ -25,7 +25,7 @@
           <v-spacer></v-spacer>
 
           <v-btn icon>
-            <v-icon>mdi-heart-outline</v-icon>
+            <v-icon color="red lighten-1">mdi-heart-outline</v-icon>
           </v-btn>
 
           <v-btn icon>
@@ -34,6 +34,9 @@
         </v-card-actions>
       </v-card>
     </v-col>
+  </v-row>
+  <v-row v-else>
+    <v-col>It looks like you haven't bookmarked any dishes yet</v-col>
   </v-row>
 </template>
 

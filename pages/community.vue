@@ -1,11 +1,24 @@
 <template>
   <div>
-    <v-row v-for="user in users" :key="user.id">
+    <h4>Following (need to extend API to attach profile and profile images)</h4>
+    <v-row v-for="user in following" :key="user.id">
       <v-col cols="4" sm="2" md="1">
-        <v-avatar v-if="user.userProfileImg" size="50">
+        <v-avatar v-if="user.userProfileImg" size="75">
           <v-img :src="user.userProfileImg"> </v-img>
         </v-avatar>
-        <v-avatar v-else color="indigo" size="50">
+        <v-avatar v-else color="indigo" size="75">
+          <!-- TODO: display the initials and a dynamic, theme based color -->
+          <span class="white--text headline">user.username</span>
+        </v-avatar>
+      </v-col>
+    </v-row>
+    <h4>Followers (need to extend API to attach profile and profile images)</h4>
+    <v-row v-for="user in followers" :key="user.id">
+      <v-col cols="4" sm="2" md="1">
+        <v-avatar v-if="user.userProfileImg" size="75">
+          <v-img :src="user.userProfileImg"> </v-img>
+        </v-avatar>
+        <v-avatar v-else color="indigo" size="75">
           <!-- TODO: display the initials and a dynamic, theme based color -->
           <span class="white--text headline">user.username</span>
         </v-avatar>
@@ -18,8 +31,11 @@
 export default {
   middleware: 'authenticated',
   computed: {
-    users() {
-      return this.$store.state.community.users
+    followers() {
+      return this.$store.state.community.followers
+    },
+    following() {
+      return this.$store.state.community.following
     }
   },
 

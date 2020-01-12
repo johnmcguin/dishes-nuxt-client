@@ -96,7 +96,7 @@ export default {
         },
         {
           icon: 'mdi-account-search-outline',
-          title: 'Community',
+          title: 'My Community',
           to: '/community'
         }
       ]

@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row v-if="favorites.length">
     <v-col
       v-for="dish in favorites"
       :key="dish.id"
@@ -29,10 +29,15 @@
           </v-btn>
 
           <v-btn icon>
-            <v-icon>mdi-bookmark-outline</v-icon>
+            <v-icon color="yellow darken-2">mdi-bookmark-outline</v-icon>
           </v-btn>
         </v-card-actions>
       </v-card>
+    </v-col>
+  </v-row>
+  <v-row v-else>
+    <v-col>
+      It looks like you don't have any favorites yet
     </v-col>
   </v-row>
 </template>
