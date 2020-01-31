@@ -36,12 +36,16 @@ export const actions: ActionTree<RootState, RootState> = {
   },
 
   async SET_USER_FAVORITE({ commit }, { userId, dishId }) {
-    const { data } = await this.$axios.$post(`/api/users/${userId}/dishes/${dishId}/favorites`)
+    const { data } = await this.$axios.$post(
+      `/api/users/${userId}/dishes/${dishId}/favorites`
+    )
     commit('setUserFavorites', data)
   },
 
   async BOOKMARK_DISH({ commit }, { userId, dishId }) {
-    const { data } = await this.$axios.$post(`/api/users/${userId}/dishes/${dishId}/bookmarks`)
+    const { data } = await this.$axios.$post(
+      `/api/users/${userId}/dishes/${dishId}/bookmarks`
+    )
     commit('setUserBookmarks', data)
   },
 
