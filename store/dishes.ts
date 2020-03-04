@@ -3,13 +3,13 @@ import { ActionTree, MutationTree } from 'vuex'
 export const state = () => ({
   userMadeDishes: [],
   userFavorites: [],
-  userBookmarks: []
+  userBookmarks: [],
+  dishDetails: {}
 })
 // eslint-disable-next-line no-undef
 export type RootState = ReturnType<typeof state>
 
 export const mutations: MutationTree<RootState> = {
-  // mutate state
   setUserDishes(state, payload) {
     state.userMadeDishes = payload
   },
@@ -20,11 +20,14 @@ export const mutations: MutationTree<RootState> = {
 
   setUserBookmarks(state, payload) {
     state.userBookmarks = payload
+  },
+
+  setDishDetails(state, payload) {
+    state.dishDetails = payload
   }
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  // mutations must be synchronous, but actions can be async and can call mutations
   async GET_USER_DISHES({ commit }, payload) {
     const { data } = await this.$axios.$get(`/api/users/${payload}/dishes`)
     commit('setUserDishes', data)
@@ -52,5 +55,10 @@ export const actions: ActionTree<RootState, RootState> = {
   async GET_USER_BOOKMARKS({ commit }, payload) {
     const { data } = await this.$axios.$get(`/api/users/${payload}/bookmarks`)
     commit('setUserBookmarks', data)
+  },
+
+  async GET_DISH_DETAILS({ commit }, payload) {
+    const { data } = await this.$axios.$get(`/api/dishes/${payload}`)
+    commit('setDishDetails', data)
   }
 }

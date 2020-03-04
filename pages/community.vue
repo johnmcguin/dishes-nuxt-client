@@ -7,7 +7,6 @@
           <v-img :src="user.userProfileImg"> </v-img>
         </v-avatar>
         <v-avatar v-else color="indigo" size="75">
-          <!-- TODO: display the initials and a dynamic, theme based color -->
           <span class="white--text headline">user.username</span>
         </v-avatar>
       </v-col>
@@ -19,7 +18,6 @@
           <v-img :src="user.userProfileImg"> </v-img>
         </v-avatar>
         <v-avatar v-else color="indigo" size="75">
-          <!-- TODO: display the initials and a dynamic, theme based color -->
           <span class="white--text headline">user.username</span>
         </v-avatar>
       </v-col>

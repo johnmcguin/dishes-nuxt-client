@@ -1,16 +1,12 @@
 <template>
-  <v-row v-if="bookmarks.length">
-    <v-col
-      v-for="dish in bookmarks"
-      :key="dish.id"
-      xs="12"
-      sm="6"
-      md="4"
-      lg="3"
-    >
-      <dish :dish="dish"></dish>
-    </v-col>
-  </v-row>
+  <div v-if="bookmarks.length">
+    <h2>My Bookmarks</h2>
+    <div class="container">
+      <v-row v-for="dish in bookmarks" :key="dish.id" class="mb-2">
+        <dish :dish="dish"></dish>
+      </v-row>
+    </div>
+  </div>
   <v-row v-else>
     <v-col>It looks like you haven't bookmarked any dishes yet</v-col>
   </v-row>

@@ -1,18 +1,11 @@
 <template>
   <div v-if="userMadeDishes.length">
     <h2>My Dishes</h2>
-    <v-row>
-      <v-col
-        v-for="dish in userMadeDishes"
-        :key="dish.id"
-        xs="12"
-        sm="6"
-        md="4"
-        lg="3"
-      >
+    <div class="container">
+      <v-row v-for="dish in userMadeDishes" :key="dish.id" class="mb-2">
         <dish :dish="dish"></dish>
-      </v-col>
-    </v-row>
+      </v-row>
+    </div>
   </div>
   <v-row v-else>
     <v-col>It looks like you haven't posted any dishes yet</v-col>

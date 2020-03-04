@@ -1,16 +1,12 @@
 <template>
-  <v-row v-if="favorites.length">
-    <v-col
-      v-for="dish in favorites"
-      :key="dish.id"
-      xs="12"
-      sm="6"
-      md="4"
-      lg="3"
-    >
-      <dish :dish="dish"></dish>
-    </v-col>
-  </v-row>
+  <dif v-if="favorites.length">
+    <h2>My Favorites</h2>
+    <div class="container">
+      <v-row v-for="dish in favorites" :key="dish.id" class="mb-2">
+        <dish :dish="dish"></dish>
+      </v-row>
+    </div>
+  </dif>
   <v-row v-else>
     <v-col>
       It looks like you don't have any favorites yet
